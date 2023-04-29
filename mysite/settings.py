@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
-
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-h-ks#2vm5z+h&eu4g&v%x$n4eu#e5ooicrz1^1_jcvix-=pa)0'
+SECRET_KEY = 'django-insecure-er*1x3h3k@36cjb@=4-idf+3v)czb#4ix_=^j!f(w!%x=&amhx'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'app1'
+    'blogapp',
+    
 ]
 
 MIDDLEWARE = [
@@ -122,3 +123,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# STATICFILE_DIRS = [
+#     os.path.join( BASE_DIR, 'static')
+# ]
