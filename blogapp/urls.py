@@ -4,5 +4,11 @@ from blogapp.views import *
 
 urlpatterns = [
     path('', index_function, name='index'),
-    path('contact/', contact, name='contact')
+    path('contact/', contact, name='qwerty'), #for your example
+    path('beauty/', beauty, name='beauty'),
+    path('fashion/', fashion, name='fashion'),
+    path('register/', register, name='register'),
+
+
+
 ]
