@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NewsBlog a Blog Category Bootstrap Responsive Website Template | Home : W3layouts</title>
+
+    <link href="//fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="{% static 'assets/css/style-starter.css' %}">
+
+</head>
+<body>
+    <br><br>
+    <div class="col-lg-12 form-inner-cont">
+        <!-- HTTP method -->
+        <form action="{% url 'login' %}" method="post" class="signin-form" enctype="multipart/form-data">
+            {{hemlata}}
+            {% csrf_token %} 
+            <div class="form-input">
+                <input type="email" name="email" id="w3lSubject" placeholder="Enter Your Email"
+                    required />
+            </div>
+            <br>
+
+            <div class="form-input">
+                <input type="password" name="password" id="w3lSubject" placeholder="Enter Your Password"
+                    required />
+            </div>
+            <br>
+            <div class="text-center">
+                <button class="btn btn-style btn-primary">Login</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

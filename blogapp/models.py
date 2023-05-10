@@ -14,6 +14,5 @@ class User(models.Model):
     gender = models.CharField(max_length=50, choices=v1)
     pic = models.FileField(upload_to='profile_pics', default='sad.png')
 
-
-    def __str__(self):
+    def __str__(self) -> str:
         return self.first_name

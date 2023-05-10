@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .forms import *
 from django.contrib import messages
@@ -9,17 +9,35 @@ from django.conf import settings
 # Create your views here.
 
 def index_function(request):
-    return render(request, 'index.html')
+    try:
+        u1 = User.objects.get(email = request.session['email'])
+        return render(request, 'index.html', {'userdata':u1})
+    except:
+        return render(request, 'index.html')
 
 
 def contact(request):
-    return render(request, 'contact.html')
+    try:
+        u1 = User.objects.get(email = request.session['email'])
+        return render(request, 'contact.html', {'userdata':u1})
+    except:
+        return render(request, 'contact.html')
+
 
 def beauty(request):
-    return render(request, 'beauty.html')
+    try:
+        u1 = User.objects.get(email = request.session['email'])
+        return render(request, 'beauty.html', {'userdata':u1})
+    except:
+        return render(request, 'beauty.html')
 
 def fashion(request):
-    return render(request, 'fashion.html')
+    try:
+        u1 = User.objects.get(email = request.session['email'])
+        return render(request, 'fashion.html', {'userdata':u1})
+    except:
+        return render(request, 'fashion.html')
+
 
 
 def register(request):
@@ -34,7 +52,8 @@ def register(request):
             try:
                 User.objects.get(username = request.POST['username'])
                 return render(request , 'register.html', {'msg': 'Username already Exists', 'form': f_obj})
-            except:   
+            except:  
+
                 global c_otp
                 c_otp = random.randint(100000,999999)
                 subject = "Email Verify"
@@ -68,7 +87,23 @@ def otp(request):
         return render(request, 'otp.html', {'msg': 'Wrong OTP, Enter again'})
         
 
+def login(request):
+    if request.method == 'POST':
+        try:
+            u1 = User.objects.get(email = request.POST['email'])
+            if u1.password == request.POST['password']:
+                request.session['email'] = request.POST['email'] #iss line se login ho gaya hai
+                return render(request, 'index.html', {'userdata': u1})
+            else:
+                return render(request, 'login.html', {'hemlata': 'Invalid Password'})
+        except:
+            #agar error aaya hai matalab email invalid hai, account  hi nahi hai
+            return render(request, 'login.html', {'hemlata': 'Email Does Not Exist!'})
 
+    else:
+        return render(request, 'login.html')
+    
 
-        
-        
+def logout(request):
+    del request.session['email']
+    return redirect('index')
