@@ -16,3 +16,20 @@ class User(models.Model):
 
     def __str__(self) -> str:
         return self.first_name
+    
+
+class Blog(models.Model):
+    c1 = [('food', 'food'), 
+          ('lifestyle', 'lifestyle'), 
+          ('fashion', 'fashion'), 
+          ('beauty', 'beauty')]
+
+    title = models.CharField(max_length=150) 
+    des = models.TextField()
+    pic = models.FileField(upload_to='blog_photos', default='sad.jpg')
+    time = models.DateTimeField(auto_now=True)
+    user = models.ForeignKey(User, on_delete= models.CASCADE)
+    category = models.CharField(max_length=150, choices=c1)
+    
+    def __str__(self):
+        return self.title

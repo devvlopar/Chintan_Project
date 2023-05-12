@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<br><br>
+    <div class="col-lg-12 form-inner-cont">
+        <!-- HTTP method -->
+        <form action="{% url 'add_blog' %}" method="post" class="signin-form" enctype="multipart/form-data">
+            {{msg}}
+            {% csrf_token %} 
+            <!-- cross site request forgery -->
+            {{form.as_p}}
+            <br>
+            <div class="text-center">
+                <button class="btn btn-style btn-primary">Add Blog</button>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}

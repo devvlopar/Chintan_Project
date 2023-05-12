@@ -107,3 +107,25 @@ def login(request):
 def logout(request):
     del request.session['email']
     return redirect('index')
+
+
+def add_blog(request):
+    b_form = BlogForm()
+    u1 = User.objects.get(email = request.session['email'])
+    if request.method == 'GET':
+        return render(request, 'add_blog.html', {'form': b_form, 'userdata': u1})
+    else:
+        #blog hai wo db mein entry karwana hai
+        # template pe se data request.POST naam ki dictionary mein aata hai
+        Blog.objects.create(
+            title = request.POST['title'], 
+            des = request.POST['des'],
+            pic = request.FILES['pic'],
+            user = u1, #user variable pe FOREIGNKEY field liya hai isiliye User ka obj dena hai
+            category = request.POST['category']
+        )
+        return render(request, 'add_blog.html', {'form': b_form, 'userdata':u1, 'msg': 'Successfully Created'})
+    
+
+def my_blogs(request):
+    return render(request, 'my_blogs.html')

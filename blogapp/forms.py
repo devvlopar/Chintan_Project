@@ -7,3 +7,9 @@ class UserForm(ModelForm):
         # fields = ('first_name', 'last_name', 'username', 'email', 'password')
         exclude = ('pic','gender')
 
+
+class BlogForm(ModelForm):
+    class Meta:
+        model = Blog
+        # fields = '__all__'
+        exclude = ('user',)
