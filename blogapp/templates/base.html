@@ -51,21 +51,11 @@
 					<li class="nav-item active">
 						<a class="nav-link" href="{% url 'index' %}">Home</a>
 					</li>
-					<li class="nav-item dropdown @@pages__active">
-						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							More <span class="fa fa-angle-down"></span>
-						</a>
-						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item @@b__active" href="{% url 'beauty' %}">Beauty</a>
-							<a class="dropdown-item @@fa__active" href="{% url 'fashion' %}">Fashion & Style</a>
-						</div>
-					</li>
-          
+					          
           {% if userdata %}
           
 					<li class="nav-item @@contact__active">
-						<a class="nav-link" href="">My Blogs</a>
+						<a class="nav-link" href="{% url 'my_blogs' %}">My Blogs</a>
 					</li>
           <li class="nav-item @@contact__active">
 						<a class="nav-link" href="">{{userdata.username}}</a>

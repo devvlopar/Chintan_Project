@@ -25,19 +25,40 @@ def contact(request):
 
 
 def beauty(request):
+    l1 = Blog.objects.filter(category = 'beauty')
     try:
         u1 = User.objects.get(email = request.session['email'])
-        return render(request, 'beauty.html', {'userdata':u1})
+        return render(request, 'beauty.html', {'userdata':u1, 'beauty_blogs': l1})
     except:
-        return render(request, 'beauty.html')
+        return render(request, 'beauty.html', {'beauty_blogs': l1})
 
 def fashion(request):
+    l1 = Blog.objects.filter(category = 'fashion')
     try:
         u1 = User.objects.get(email = request.session['email'])
-        return render(request, 'fashion.html', {'userdata':u1})
+        return render(request, 'fashion.html', {'userdata':u1, 'fashion_blogs': l1})
     except:
-        return render(request, 'fashion.html')
+        return render(request, 'fashion.html', {'fashion_blogs': l1})
 
+
+def lifestyle(request):
+    l1 = Blog.objects.filter(category = 'lifestyle')
+
+    try:
+        u1 = User.objects.get(email = request.session['email'])
+        return render(request, 'lifestyle.html', {'userdata':u1, 'lifestyle_blogs': l1})
+    except:
+        return render(request, 'lifestyle.html', {'lifestyle_blogs': l1})
+    
+
+def food(request):
+    l1 = Blog.objects.filter(category = 'food')
+
+    try:
+        u1 = User.objects.get(email = request.session['email'])
+        return render(request, 'food.html', {'userdata':u1, 'food_blogs': l1})
+    except:
+        return render(request, 'food.html', {'food_blogs': l1})
 
 
 def register(request):
@@ -111,21 +132,29 @@ def logout(request):
 
 def add_blog(request):
     b_form = BlogForm()
-    u1 = User.objects.get(email = request.session['email'])
-    if request.method == 'GET':
-        return render(request, 'add_blog.html', {'form': b_form, 'userdata': u1})
-    else:
-        #blog hai wo db mein entry karwana hai
-        # template pe se data request.POST naam ki dictionary mein aata hai
-        Blog.objects.create(
-            title = request.POST['title'], 
-            des = request.POST['des'],
-            pic = request.FILES['pic'],
-            user = u1, #user variable pe FOREIGNKEY field liya hai isiliye User ka obj dena hai
-            category = request.POST['category']
-        )
-        return render(request, 'add_blog.html', {'form': b_form, 'userdata':u1, 'msg': 'Successfully Created'})
-    
+    try:
+        u1 = User.objects.get(email = request.session['email'])
+        if request.method == 'GET':
+            return render(request, 'add_blog.html', {'form': b_form, 'userdata': u1})
+        else:
+            #blog hai wo db mein entry karwana hai
+            # template pe se data request.POST naam ki dictionary mein aata hai
+            Blog.objects.create(
+                title = request.POST['title'], 
+                des = request.POST['des'],
+                pic = request.FILES['pic'],
+                user = u1, #user variable pe FOREIGNKEY field liya hai isiliye User ka obj dena hai
+                category = request.POST['category']
+            )
+            return render(request, 'add_blog.html', {'form': b_form, 'userdata':u1, 'msg': 'Successfully Created'})
+    except:
+        return redirect('login')
 
 def my_blogs(request):
-    return render(request, 'my_blogs.html')
+    try:
+        #u1 wo user hai jisne currently login karke rakha hai
+        u1 = User.objects.get(email = request.session['email'])
+        l1 = Blog.objects.filter(user = u1)
+        return render(request, 'my_blogs.html', {'userdata':u1, 'user_blogs': l1})
+    except:
+        return redirect('login')
