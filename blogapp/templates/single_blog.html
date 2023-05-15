@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+
+
+
+
+
+
+<section class="w3l-testimonials" id="testimonials">
+    <!-- main-slider -->
+    <div class="testimonials pt-2 pb-5">
+        <div class="container pb-lg-5">
+            <div class=" mb-md-0 mb-sm-5 mb-4">
+                <div class="item">
+                    <div class="row slider-info">
+                        <div class="col-lg-8 message-info align-self">
+                            <span class="label-blue mb-sm-4 mb-3"></span>
+                            <span class="label-blue mb-sm-4 mb-3"><span>
+                            <span class="label-blue mb-sm-4 mb-3"> {{blog_data.user.username}} </span>
+                            
+                            
+                            <span class="label-blue mb-sm-4 mb-3 pull-right"><a href="" >Donate Now!!</a></a></span>
+
+
+                            <h3 class="title-big mb-4"> {{blog_data.title}}
+                            </h3>
+                            <p class="message">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea
+                                sit id accusantium officia quod quasi necessitatibus perspiciatis Harum error
+                                provident quibusdam tenetur. Ut fermentum leo quis sapienet faucibus, at
+                                scelerisque sem feugiat. Nulla in eros purus.
+                            </p>
+                           
+                        </div>
+                        <div class="col-lg-4 col-md-4 img-circle ">
+                            <img src="{{blog_data.pic.url}}" class="img-fluid radius-image-full" alt="client image">
+                        </div>
+                        <br><br><br>
+                        <div class="col-lg-12">
+                            <p> 
+                                {{blog_data.des}}
+                            </p>
+                         </div>
+                         <div class="w3l-subscribe py-5 col-md-12">
+
+                         <div class="container py-lg-5 py-md-4">
+                            <div class="w3l-subscribe-content text-center bg-clr-white py-md-5 py-2">
+                                <div class="py-5">
+                                    <h3 class="section-title-left mb-2">Comment Section</h3>
+                                    <form action="{% url 'add_comment' blog_data.id %}" method="POST" class="subscribe">
+                                        {% csrf_token %}
+                                        <textarea class="col-lg-8" name="troll"  placeholder="Enter Your Comments Here.." ></textarea>
+                                        <br>
+                                        <button class="btn btn-style btn-primary">Comment</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+
+                        
+
+                        
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <!-- /main-slider -->
+    <!-- comment section started -->
+
+    <div class="row container " >
+        <div class="col-lg-1" ></div> 
+        <div class="col-lg-10 col-md-10 item">
+        
+            {% for i in f_comments %}
+            <div class="card">
+                <div class="card-body blog-details">
+                    <a href="#blog-single.html" class="blog-desc">{{i.message}}
+                    </a>
+                    <div class="author align-items-center">
+                        <ul class="blog-meta">
+                            <li>
+                                <img src="{{i.user.pic.url}}" alt="" style="max-width: 50px; max-height: 50px;" class="img-fluid rounded-circle">
+                            
+                                <a href="author.html">{{i.user.username}}</a> </a>
+                            
+                                
+                                <span class="meta-value">{{i.time}}</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="col-lg-1" ></div> 
+    </div>
+    
+
+
+
+</section>
+<br>
+
+{% endblock %}

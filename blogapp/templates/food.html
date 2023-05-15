@@ -20,7 +20,7 @@
                             </a>
                         </div>
                         <div class="col-sm-7 card-body blog-details align-self">
-                            <a href="#blog-single.html" class="blog-desc">{{i.title}}
+                            <a href="{% url 'single_blog' i.id %}" class="blog-desc">{{i.title}}
                             </a>
                             <div class="author align-items-center">
                                 <img src="{{i.user.pic.url}}" alt="" class="img-fluid rounded-circle">

@@ -15,14 +15,7 @@ urlpatterns = [
     path('my_blogs/', my_blogs, name='my_blogs'),
     path('food/', food, name='food'),
     path('lifestyle/', lifestyle, name='lifestyle'),
-
-
-
-
-
-
-
-
-
-
+    path('single_blog/<int:bid>', single_blog, name='single_blog'),
+    path('add_comment/<int:pk>', add_comment, name='add_comment'),
+    
 ]

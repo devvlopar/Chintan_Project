@@ -158,3 +158,29 @@ def my_blogs(request):
         return render(request, 'my_blogs.html', {'userdata':u1, 'user_blogs': l1})
     except:
         return redirect('login')
+
+
+def single_blog(request, bid):
+    #bid blog ki id jo hume page pe show karwana hai
+    b1 = Blog.objects.get(id = bid)
+    f_list = Comment.objects.filter(blog = b1)
+    try:
+        u1 = User.objects.get(email = request.session['email'])
+        return render(request, 'single_blog.html', {'userdata':u1, 'blog_data': b1, 'f_comments':f_list})
+    except:
+        return render(request, 'single_blog.html', {'blog_data': b1, 'f_comments': f_list})
+    
+
+def add_comment(request, pk): #pk mein wo blog ka id aa rha hai
+    try:
+        u1 = User.objects.get(email = request.session['email'])
+        b1 = Blog.objects.get(id = pk)
+        Comment.objects.create(
+            message = request.POST['troll'],
+            user = u1, #yahan pe foreign key field hone ki wajah se OBJ diya
+            blog = b1
+            )
+        f_list = Comment.objects.filter(blog = b1)
+        return render(request, 'single_blog.html', {'userdata':u1, 'blog_data': b1, 'f_comments':f_list})
+    except:
+        return redirect('login')

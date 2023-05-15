@@ -33,3 +33,13 @@ class Blog(models.Model):
     
     def __str__(self):
         return self.title
+    
+
+class Comment(models.Model):
+    message = models.CharField(max_length=150)
+    time = models.DateTimeField(auto_now=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    blog = models.ForeignKey(Blog, on_delete=models.CASCADE)
+
+    def __str__(self) -> str:
+        return self.message
