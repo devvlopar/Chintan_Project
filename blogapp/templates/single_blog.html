@@ -21,9 +21,12 @@
                             <span class="label-blue mb-sm-4 mb-3"></span>
                             <span class="label-blue mb-sm-4 mb-3"><span>
                             <span class="label-blue mb-sm-4 mb-3"> {{blog_data.user.username}} </span>
+                            <span class="label-blue mb-sm-4 mb-3"> Total Donations: {{t_amount}} </span>
                             
                             
-                            <span class="label-blue mb-sm-4 mb-3 pull-right"><a href="" >Donate Now!!</a></a></span>
+                            
+                            
+                            <span class="label-blue mb-sm-4 mb-3 pull-right"><a href="{% url 'donate' blog_data.id %}" >Donate Now!!</a></a></span>
 
 
                             <h3 class="title-big mb-4"> {{blog_data.title}}

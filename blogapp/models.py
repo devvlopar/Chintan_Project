@@ -43,3 +43,11 @@ class Comment(models.Model):
 
     def __str__(self) -> str:
         return self.message
+    
+
+class Donate(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    blog = models.ForeignKey(Blog, on_delete=models.CASCADE)
+    amount = models.FloatField()
+
+    

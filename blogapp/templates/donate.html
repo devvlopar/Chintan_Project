@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container py-lg-5 py-md-4">
+    <div class="w3l-subscribe-content text-center bg-clr-white py-md-5 py-2">
+        <h2>Donating to {{blogdata.title}} </h2>
+        <h3>by {{userdata.username}} </h3>
+        <div class="py-5">
+            <h3 class="section-title-left mb-2">Please Enter Amount</h3>
+            <form action="{% url 'pay_init' %}" method="POST" class="subscribe">
+                {% csrf_token %}
+                <input type="number" class="col-lg-8" name="pamount"> 
+                <br>
+                <button class="btn btn-style btn-primary">pay now</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -17,5 +17,10 @@ urlpatterns = [
     path('lifestyle/', lifestyle, name='lifestyle'),
     path('single_blog/<int:bid>', single_blog, name='single_blog'),
     path('add_comment/<int:pk>', add_comment, name='add_comment'),
+    path('donate/<int:bid>', donate, name='donate'),
+    path('pay_init/', pay_init, name='pay_init'),
+    path('pay_init/paymenthandler/', paymenthandler, name='paymenthandler')
+
+
     
 ]
