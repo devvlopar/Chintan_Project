@@ -19,7 +19,11 @@ urlpatterns = [
     path('add_comment/<int:pk>', add_comment, name='add_comment'),
     path('donate/<int:bid>', donate, name='donate'),
     path('pay_init/', pay_init, name='pay_init'),
-    path('pay_init/paymenthandler/', paymenthandler, name='paymenthandler')
+    path('pay_init/paymenthandler/', paymenthandler, name='paymenthandler'),
+    path('search/', search, name='search'),
+    path('delete_blog/<int:bpk>', delete_blog, name='delete_blog'),
+
+
 
 
     

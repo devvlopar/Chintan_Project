@@ -40,7 +40,7 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<nav class="mx-auto">
 					<div class="search-bar">
-						<form class="search">
+						<form class="search" action="{% url 'search' %}" method="get" >
 							<input type="search" class="search__input" name="search" placeholder="Discover news, articles and more"
 								onload="equalWidth()" required>
 							<span class="fa fa-search search__icon"></span>

@@ -5,11 +5,10 @@
 <div class="w3l-homeblock2 w3l-homeblock5 py-5">
     <div class="container pt-md-4 pb-md-5">
         <!-- block -->
-        <h3 class="category-title mb-3">My Blogs</h3>
-        <p class="mb-sm-5 mb-4 max-width">Lorem ipsum dolor sit amet elit. Id quaerat amet ipsum sunt et quos dolorum.</p>
+        <h3 class="category-title mb-3"> Search Results</h3>
+        <!-- <p class="mb-sm-5 mb-4 max-width">Lorem ipsum dolor sit amet elit. Id quaerat amet ipsum sunt et quos dolorum.</p> -->
         <div class="row">
-
-            {% for i in user_blogs %}
+            {% for i in blogs %}
 
             <div class="col-lg-6 mt-4">
                 <div class="bg-clr-white hover-box">
@@ -22,7 +21,6 @@
                         <div class="col-sm-7 card-body blog-details align-self">
                             <a href="{% url 'single_blog' i.id %}" class="blog-desc">{{i.title}}
                             </a>
-                            <button><a href="{% url 'delete_blog' i.id %}">Delete</a></button>
                             <div class="author align-items-center">
                                 <img src="{{i.user.pic.url}}" alt="" class="img-fluid rounded-circle">
                                 <ul class="blog-meta">
@@ -39,8 +37,8 @@
                 </div>
             </div>
             
-         
             {% endfor %}
+
         </div>
         <ul class="site-pagination text-center mt-md-5 mt-4">
             <li><span aria-current="page" class="page-numbers current">1</span></li>

@@ -287,3 +287,21 @@ def paymenthandler(request):
     else:
        # if other than POST request is made.
         return HttpResponseBadRequest()
+    
+
+def search(request):
+    word = request.GET['search']
+    # ye niche wali line pe hum username ke hisaab se blogs filter kar rhe hai
+    # f_list = Blog.objects.filter(user_username__icontains = word)
+
+    f_list = Blog.objects.filter(title__icontains = word)
+    try:
+        u1 = User.objects.get(email = request.session['email'])
+        return render(request, 'search.html', {'userdata':u1, 'blogs': f_list})
+    except:
+        return render(request, 'search.html', {'blogs' : f_list})
+
+def delete_blog(request, bpk):
+    b_obj = Blog.objects.get(id = bpk)
+    b_obj.delete() # ye wala blog database mein se delete ho jaayega
+    return redirect('my_blogs')
